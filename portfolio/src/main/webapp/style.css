@@ -1,9 +1,35 @@
-#content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+.bg {
+    background-image:url("image/travel1.JPG"), url("image/Aprillie.jpeg"), url("image/travel2.JPG"), url("image/FA.jpg"), url("image/travel3.JPG"), url("image/gongke.jpg"), url("image/travel4.jpg"), url("image/kito.jpg"), url("image/travel5.jpg"), url("image/Misaka.jpg"), url("image/travel6.jpg"), url("image/natsume.jpg"), url("image/travel7.jpg"), url("image/threebody.jpeg"), url("image/travel8.jpg");
+    background-repeat: no-repeat, no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat;
+    background-size: 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%;
+    background-position-x: 0%, 25%, 50%, 75%, 100%, 0%, 25%, 50%, 75%, 100%, 0%, 25%, 50%, 75%, 100%;
+    background-position-y: 0%, 0%, 0%, 0%, 0%, 50%, 50%, 50%, 50%, 50%, 100%, 100%, 100%, 100%, 100%;
 }
-
-#greeting-container {
-  margin-top: 20px;
+.main {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #33fff9;
+    background:rgba(255,255,255,0.3);
+}
+.introduction {
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom :auto;
+    font-size: 100%;
+    line-height: 15px;
+    color: #000000
+}
+.bubble {
+    font-size: 20px;
+    background: linear-gradient(aquamarine, white);
+    padding: 20px 32px;
+    text-align: center;
+    width: 150px;
+    height: 150px;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    opacity: 0.8;
 }

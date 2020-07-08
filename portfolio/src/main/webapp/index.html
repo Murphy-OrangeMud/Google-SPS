@@ -1,18 +1,68 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-  </head>
-  <body>
-    <div id="content">
-      <h1>My Portfolio</h1>
-      <p>This is my portfolio.</p>
-      <p>Click here to get a random message:</p>
-      <button onclick="addRandomGreeting()">Hello</button>
-      <div id="greeting-container"></div>
+
+<head>
+    <meta name="viewport" content="width=device-width", initial-scale="1" charset="UTF-8"/>
+    <title>
+        Murphy-OrangeMud's portfolio
+    </title>
+    <link rel="stylesheet" href="style.css" type="text/css"/>
+    </style>
+</head>
+
+<body>
+    <div class = "bg">
+        <div class = "main" >
+            <script type="text/javascript"  src="./setframe.js"></script>
+            <div class="photo" valign="center" align = "center"><img src="image/1.jpg" border="0"  style="cursor: pointer; width: 100px; height: 100px; margin-top: 15%;"/></div>
+            <div class="introduction" valign="center" align = "center">
+                <h1>Murphy-OrangeMud</h1>
+                <p1>文不能测字，武不能防身<br></br></p1>
+                <p2>00后 / 编程届萌新 / 想探索更大的世界，想写出更好的代码<br></br></p2>
+                <p3>2018-now：北京大学 计算机科学与技术<br></br></p3>
+                <p4>2015-2018：江西师大附中<br></br></p4>
+                <p5>2012-2015：南昌三中<br></br></p5>
+                <p6>（欢迎校友抱团^^）<br></br></p6>
+                <p4>知乎：</p4> <a href=https://www.zhihu.com/people/murphy-orangemud>墨菲<br></br></a>
+                <p5>Github: </p5> <a href=https://github.com/Murphy-OrangeMud>Murphy-OrangeMud<br></br></a>
+            </div>
+            <div>
+                <div class="bubble" id="cycling and traveling" onclick="spread_text_1()"
+                    style="position: absolute; z-index:99;">
+                    <script>
+                        function spread_text_1() {
+                            document.getElementById("cycling and traveling").innerText = "这个网页的背景是我之前旅行或骑行的时候拍的照片。我最想做的一件事情是骑行219国道——从新疆叶城到西藏阿里狮泉河。我正在为此而努力，如果你也有同样的梦想，欢迎来联系我一起！";
+                            document.getElementById("cycling and traveling").style.fontSize = "2px";
+                        }
+                    </script>
+                    旅行/城市骑行/城市探索<br></br>click me
+                </div>
+                <div class="bubble" id="books/movies/music" onclick="spread_text_2()"
+                    style="position: absolute; z-index:99;">
+                    <script>
+                        function spread_text_2() {
+                            document.getElementById("books/movies/music").innerText = "我喜欢文学、音乐和电影，也是狂热的二次元爱好者，背景图里有一些我喜欢的番剧。现在也在看一些哲学。如果你也喜欢它们，希望能和你交流";
+                            document.getElementById("books/movies/music").style.fontSize = "2px";
+                            sleep(5);
+                        }
+                    </script>
+                    读书/电影/音乐/番剧狂热爱好者<br></br>click me
+                </div>
+                <div class="bubble" id="programming newbie" , onclick="spread_text_3()"
+                    style="position: absolute; z-index:99;">
+                    <script>
+                        function spread_text_3() {
+                            document.getElementById("programming newbie").innerText = "相比起很多很早就开始踏入代码世界的技术咖，我在编程界还是一枚萌新。我的个人项目可以到我的github中查看。如果你愿意和我交流技术，希望能和你共同进步";
+                            document.getElementById("programming newbie").style.fontSize = "2px";
+                            sleep(5);
+                        }
+                    </script>
+                    编程界萌新，想当geek<br></br>click me
+                </div>
+                <script type="text/javascript"  src="bubble.js"></script>
+            </div>
+        </div>
     </div>
-  </body>
+</body>
+
 </html>
