@@ -31,8 +31,20 @@
                     style="position: absolute; z-index:99;">
                     <script>
                         function spread_text_1() {
-                            document.getElementById("cycling and traveling").innerText = "这个网页的背景是我之前旅行或骑行的时候拍的照片。我最想做的一件事情是骑行219国道——从新疆叶城到西藏阿里狮泉河。我正在为此而努力，如果你也有同样的梦想，欢迎来联系我一起！";
-                            document.getElementById("cycling and traveling").style.fontSize = "2px";
+                            pause[0] = !pause[0];
+                            if (pause[0]) {
+                                document.getElementById("cycling and traveling").innerText = "这个网页的背景是我之前旅行或骑行的时候拍的照片。我最想做的一件事情是骑行219国道——从新疆叶城到西藏阿里狮泉河。我正在为此而努力，如果你也有同样的梦想，欢迎来联系我一起！";
+                                document.getElementById("cycling and traveling").style.fontSize = "10px";
+                                document.getElementById("cycling and traveling").width *= 1.25;
+                                document.getElementById("cycling and traveling").height *= 1.25;
+                                clearInterval(interval[0]);
+                            } else {
+                                document.getElementById("cycling and traveling").innerText = "旅行/城市骑行/城市探索"
+                                document.getElementById("cycling and traveling").style.fontSize = "20px";
+                                document.getElementById("cycling and traveling").width /= 1.25;
+                                document.getElementById("cycling and traveling").height /= 1.25;
+                                interval[0] = setInterval("changePos(0)", delay[0]);
+                            }
                         }
                     </script>
                     旅行/城市骑行/城市探索<br></br>click me
@@ -41,9 +53,20 @@
                     style="position: absolute; z-index:99;">
                     <script>
                         function spread_text_2() {
-                            document.getElementById("books/movies/music").innerText = "我喜欢文学、音乐和电影，也是狂热的二次元爱好者，背景图里有一些我喜欢的番剧。现在也在看一些哲学。如果你也喜欢它们，希望能和你交流";
-                            document.getElementById("books/movies/music").style.fontSize = "2px";
-                            sleep(5);
+                            pause[1] = !pause[1];
+                            if (pause[1]) {
+                                document.getElementById("books/movies/music").innerText = "我喜欢文学、音乐和电影，也是狂热的二次元爱好者，背景图里有一些我喜欢的番剧。现在也在看一些哲学。如果你也喜欢它们，希望能和你交流";
+                                document.getElementById("books/movies/music").style.fontSize = "10px";
+                                document.getElementById("books/movies/music").width *= 1.25;
+                                document.getElementById("books/movies/music").height *= 1.25;
+                                clearInterval(interval[1]);
+                            } else {
+                                document.getElementById("books/movies/music").innerText = "读书/电影/音乐/番剧狂热爱好者";
+                                document.getElementById("books/movies/music").style.fontSize = "20px";
+                                document.getElementById("books/movies/music").width /= 1.25;
+                                document.getElementById("books/movies/music").height /= 1.25;
+                                interval[1] = setInterval("changePos(1)", delay[1]);
+                            }
                         }
                     </script>
                     读书/电影/音乐/番剧狂热爱好者<br></br>click me
@@ -52,9 +75,20 @@
                     style="position: absolute; z-index:99;">
                     <script>
                         function spread_text_3() {
-                            document.getElementById("programming newbie").innerText = "相比起很多很早就开始踏入代码世界的技术咖，我在编程界还是一枚萌新。我的个人项目可以到我的github中查看。如果你愿意和我交流技术，希望能和你共同进步";
-                            document.getElementById("programming newbie").style.fontSize = "2px";
-                            sleep(5);
+                            pause[2] = !pause[2];
+                            if (!pause[2]) {
+                                document.getElementById("programming newbie").innerText = "相比起很多很早就开始踏入代码世界的技术咖，我在编程界还是一枚萌新。我的个人项目可以到我的github中查看。如果你愿意和我交流技术，希望能和你共同进步";
+                                document.getElementById("programming newbie").style.fontSize = "10px";
+                                document.getElementById("programming newbie").width *= 1.25;
+                                document.getElementById("programming newbie").height *= 1.25;
+                                clearInterval(interval[2]);
+                            } else {
+                                document.getElementById("programming newbie").innerText = "编程界萌新，想当geek";
+                                document.getElementById("programming newbie").style.fontSize = "20px";
+                                document.getElementById("programming newbie").width /= 1.25;
+                                document.getElementById("programming newbie").height /= 1.25;
+                                interval[2] = setInterval("changePos(2)", delay[2]);
+                            }
                         }
                     </script>
                     编程界萌新，想当geek<br></br>click me
