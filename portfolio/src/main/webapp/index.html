@@ -7,13 +7,19 @@
         Murphy-OrangeMud's portfolio
     </title>
     <link rel="stylesheet" href="style.css" type="text/css"/>
+    <script src="fetch.js"></script>
     </style>
 </head>
 
 <body>
-    <div class = "bg">
-        <div class = "main" >
+    <div id = "bg">
+        <div id = "main" >
             <script type="text/javascript"  src="./setframe.js"></script>
+            <iframe src="silence.mp3" allow="autoplay" id="audio" style="display:block" width="0" height="0"></iframe>
+            <audio id="bgm" autoplay controls="controls"loop>
+                    <source src="bgm.mp3" type="audio/mp3">
+                           万能青年旅店-十万嬉皮
+            </audio>
             <div class="photo" valign="center" align = "center"><img src="image/1.jpg" border="0"  style="cursor: pointer; width: 100px; height: 100px; margin-top: 15%;"/></div>
             <div class="introduction" valign="center" align = "center">
                 <h1>Murphy-OrangeMud</h1>
@@ -21,7 +27,7 @@
                 <p2>00后 / 编程届萌新 / 想探索更大的世界，想写出更好的代码<br></br></p2>
                 <p3>2018-now：北京大学 计算机科学与技术<br></br></p3>
                 <p4>2015-2018：江西师大附中<br></br></p4>
-                <p5>2012-2015：南昌三中<br></br></p5>
+                <p5>2012-2015：南昌三中<br></br></p5> 
                 <p6>（欢迎校友抱团^^）<br></br></p6>
                 <p4>知乎：</p4> <a href=https://www.zhihu.com/people/murphy-orangemud>墨菲<br></br></a>
                 <p5>Github: </p5> <a href=https://github.com/Murphy-OrangeMud>Murphy-OrangeMud<br></br></a>
@@ -33,7 +39,7 @@
                         function spread_text_1() {
                             pause[0] = !pause[0];
                             if (pause[0]) {
-                                document.getElementById("cycling and traveling").innerText = "这个网页的背景是我之前旅行或骑行的时候拍的照片。我最想做的一件事情是骑行219国道——从新疆叶城到西藏阿里狮泉河。我正在为此而努力，如果你也有同样的梦想，欢迎来联系我一起！<br></br>点我收起";
+                                document.getElementById("cycling and traveling").innerText = "这个网页的背景是我之前旅行或骑行的时候拍的照片。我最想做的一件事情是骑行219国道——从新疆叶城到西藏阿里狮泉河。我正在为此而努力，如果你也有同样的梦想，欢迎来联系我一起！\n\n点我收起";
                                 document.getElementById("cycling and traveling").style.fontSize = "10px";
                                 document.getElementById("cycling and traveling").width = parseInt(document.getElementById("cycling and traveling").width) * 1.25 + "px";
                                 document.getElementById("cycling and traveling").height = parseInt(document.getElementById("cycling and traveling").height) * 1.25 + "px";
@@ -55,7 +61,7 @@
                         function spread_text_2() {
                             pause[1] = !pause[1];
                             if (pause[1]) {
-                                document.getElementById("books/movies/music").innerText = "我喜欢文学、音乐和电影，也是狂热的二次元爱好者，背景图里有一些我喜欢的番剧。现在也在看一些哲学。如果你也喜欢它们，希望能和你交流"<br></br>点我收起;
+                                document.getElementById("books/movies/music").innerText = "我喜欢文学、音乐和电影，也是狂热的二次元爱好者，背景图里有一些我喜欢的番剧。现在也在看一些哲学。如果你也喜欢它们，希望能和你交流\n\n点我收起";
                                 document.getElementById("books/movies/music").style.fontSize = "10px";
                                 document.getElementById("books/movies/music").width = parseInt(document.getElementById("books/movies/music").width) * 1.25 + "px";
                                 document.getElementById("books/movies/music").height = parseInt(document.getElementById("books/movies/music").height) * 1.25 + "px";
@@ -77,7 +83,7 @@
                         function spread_text_3() {
                             pause[2] = !pause[2];
                             if (pause[2]) {
-                                document.getElementById("programming newbie").innerText = "相比起很多很早就开始踏入代码世界的技术咖，我在编程界还是一枚萌新。我的个人项目可以到我的github中查看。如果你愿意和我交流技术，希望能和你共同进步<br></br>点我收起";
+                                document.getElementById("programming newbie").innerText = "相比起很多很早就开始踏入代码世界的技术咖，我在编程界还是一枚萌新。我的个人项目可以到我的github中查看。如果你愿意和我交流技术，希望能和你共同进步\n\n点我收起";
                                 document.getElementById("programming newbie").style.fontSize = "10px";
                                 document.getElementById("programming newbie").width = parseInt(document.getElementById("programming newbie").width) * 1.25 + "px";
                                 document.getElementById("programming newbie").height = parseInt(document.getElementById("programming newbie").height) * 1.25 + "px";
@@ -97,6 +103,19 @@
             </div>
         </div>
     </div>
+    <form action="/data" method="POST" id = "comment-area">
+        <h2>评论区</h2>
+        <p>请留下你的吐槽/暴论/建议/鼓励，激励我优化主页吧</p>
+        <p id="no-comment">暂时还没有评论</p>
+        <textarea name = "text-input">在这里输入你的评论</textarea>
+        <br></br>
+        <p>留下你的联系方式，交个朋友?</p>
+        <input type="radio" name = "friend" value = "false">不了，我就是新时代雷锋</br>
+        <input type="radio" name = "friend" value = "true">好啊（请在下面输入你的邮箱）</br>
+        <textarea name = "email-input"></textarea>
+        <br></br>
+        <input type="submit" style="margin-bottom: auto;">
+    </form>
 </body>
 
 </html>
