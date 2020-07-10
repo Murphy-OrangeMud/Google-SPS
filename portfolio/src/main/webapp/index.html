@@ -24,7 +24,7 @@
             <div class="introduction" valign="center" align = "center">
                 <h1>Murphy-OrangeMud</h1>
                 <p1>文不能测字，武不能防身<br></br></p1>
-                <p2>00后 / 编程届萌新 / 想探索更大的世界，想写出更好的代码<br></br></p2>
+                <!--<p2>00后 / 编程届萌新 / 想探索更大的世界，想写出更好的代码<br></br></p2>-->
                 <p3>2018-now：北京大学 计算机科学与技术<br></br></p3>
                 <p4>2015-2018：江西师大附中<br></br></p4>
                 <p5>2012-2015：南昌三中<br></br></p5> 
@@ -103,7 +103,7 @@
             </div>
         </div>
     </div>
-    <form action="/data" method="POST" id = "comment-area">
+    <form method="POST" id = "comment-area" class="hidden" enctype="multipart/form-data">
         <h2>评论区</h2>
         <p>请留下你的吐槽/暴论/建议/鼓励，激励我优化主页吧</p>
         <p id="no-comment">暂时还没有评论</p>
@@ -113,7 +113,10 @@
         <input type="radio" name = "friend" value = "false">不了，我就是新时代雷锋</br>
         <input type="radio" name = "friend" value = "true">好啊（请在下面输入你的邮箱）</br>
         <textarea name = "email-input"></textarea>
-        <br></br>
+        <p>你可以上传图片或头像（暂时只支持上传一张图片）</p>
+        <input type="file" name="image">
+        <br/><br/>
+        <!-- to be revised here: maybe change to a button -->
         <input type="submit" style="margin-bottom: auto;">
     </form>
 </body>
