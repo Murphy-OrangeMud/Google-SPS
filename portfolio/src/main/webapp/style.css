@@ -1,6 +1,15 @@
+body {
+    margin: 0px;
+    width:100%;
+    height: 100%;
+    position: absolute;
+}
 #bg {
     width:100%;
     height:100%;
+    margin: 0%;
+    padding: 0%;
+    z-index: -5;
     background-image:url("image/travel1.JPG"), url("image/Aprillie.jpeg"), url("image/travel2.JPG"), url("image/FA.jpg"), url("image/travel3.JPG"), url("image/gongke.jpg"), url("image/travel4.jpg"), url("image/kito.jpg"), url("image/travel5.jpg"), url("image/Misaka.jpg"), url("image/travel6.jpg"), url("image/natsume.jpg"), url("image/travel7.jpg"), url("image/threebody.jpeg"), url("image/travel8.jpg");
     background-repeat: no-repeat, no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat,no-repeat;
     background-size: 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%, 20% 33.3%;
@@ -8,12 +17,12 @@
     background-position-y: 0%, 0%, 0%, 0%, 0%, 50%, 50%, 50%, 50%, 50%, 100%, 100%, 100%, 100%, 100%;
 }
 #main {
-    margin: 0;
+    margin: 0%;
+    padding: 0%;
     min-width: 0%;
     min-height: 0%;
     width: 100%;
     height: 100%;
-    border: 1px solid #33fff9;
     background:rgba(255,255,255,0.3);
 }
 .introduction {
@@ -38,11 +47,15 @@
     opacity: 0.8;
 }
 #comment-area {
+    position: relative;
+    /*margin: 0%;*/
+    /*position: absolute;*/
     text-align:center;
     font-family:'Courier New', Courier, monospace;
     background: #000000;
     padding: 20px;
     color:azure;
+    z-index: 10;
 }
 /*#bgm {
     position: 100% 100%;
