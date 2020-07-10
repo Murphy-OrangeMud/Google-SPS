@@ -67,7 +67,12 @@ public class DataServlet extends HttpServlet {
 
     response.setContentType("text/html; charset=UTF-8");
     for (Entity comments: results.asIterable()) {
-        response.getWriter().println(comments.getProperty("timestamp") + "<br></br>");
+        String timestamp = (String) comments.getProperty("timestamp");
+        int year = Integer.parseInt(timestamp.substring(0,4));
+        int month = Integer.parseInt(timestamp.substring(5,7));
+        int day = Integer.parseInt(timestamp.substring(8,10));
+        if (year <= 2020 && month <= 7 && day <= 10) continue;
+        response.getWriter().println(timestamp + "<br></br>");
         // if (timestamp)
         String tmp_email = (String) comments.getProperty("email");
         int nickname = tmp_email.indexOf('@');
@@ -78,7 +83,7 @@ public class DataServlet extends HttpServlet {
         response.getWriter().println(comments.getProperty("content") + "<br></br>");
         String image_url = (String) comments.getProperty("image");
         if (image_url != null) {
-            response.getWriter().println("<img src=\"" + image_url + "\" /><br></br>");
+            response.getWriter().println("<img style=\"height=50px;\" src=\"" + image_url + "\" /><br></br>");
         }       
     }
   }
