@@ -98,7 +98,7 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      String comment = JSoup.clean(request.getParameter("text-input"), Whitelist.none());
+      String comment = Jsoup.clean(request.getParameter("text-input"), Whitelist.none());
       String email;
       boolean Friend = Boolean.parseBoolean(getParameter(request, "friend", "false"));
 
