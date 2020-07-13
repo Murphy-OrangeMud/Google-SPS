@@ -100,7 +100,7 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
       //String comment = Jsoup.clean(request.getParameter("text-input"), Whitelist.none());
-      String pattern = "<script>.*</script>";
+      String pattern = "<.*>.*</.*>";
       String comment = request.getParameter("text-input");
       boolean badguy = Pattern.matches(pattern, comment);
 
