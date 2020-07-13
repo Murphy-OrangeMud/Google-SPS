@@ -1,5 +1,7 @@
 # Google Software Product Sprint
 
+Murphy-OrangeMud's Google Software Product Sprint Project  
+
 This repo contains the projects you'll work on throughout SPS.
 
 To get started:
