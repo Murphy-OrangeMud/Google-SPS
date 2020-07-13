@@ -38,11 +38,17 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.google.gson.Gson;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.safety.Cleaner;
+import org.jsoup.safety.Whitelist;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
@@ -70,11 +76,6 @@ public class DataServlet extends HttpServlet {
 
     response.setContentType("text/html; charset=UTF-8");
 
-    if (commented) {
-        response.getWriter().println("<script>alert(\"感谢你的支持！\");</script>");
-        commented = false;
-    }
-
     for (Entity comments: results.asIterable()) {
         String timestamp = (String) comments.getProperty("timestamp");
         int year = Integer.parseInt(timestamp.substring(0,4));
@@ -98,7 +99,16 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      String comment = Jsoup.clean(request.getParameter("text-input"), Whitelist.none());
+      //String comment = Jsoup.clean(request.getParameter("text-input"), Whitelist.none());
+      String pattern = "<script>.*</script>";
+      String comment = request.getParameter("text-input");
+      boolean badguy = Pattern.matches(pattern, comment);
+
+      if (badguy) {
+          response.sendRedirect("/badguy");
+          return;
+      }
+
       String email;
       boolean Friend = Boolean.parseBoolean(getParameter(request, "friend", "false"));
 
@@ -124,7 +134,7 @@ public class DataServlet extends HttpServlet {
       datastore.put(commentEntity);
 
       commented = true;
-      response.sendRedirect("/index.html");
+      response.sendRedirect("/thanks");
   }
 
   private String getParameter(HttpServletRequest request, String name, String defaultValue) {
