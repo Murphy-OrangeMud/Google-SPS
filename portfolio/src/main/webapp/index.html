@@ -105,18 +105,18 @@
         </div>
     </div>
     <form method="POST" id = "comment-area" class="hidden" enctype="multipart/form-data">
-        <h2>评论区</h2>
-        <p>请留下你的吐槽/暴论/建议/鼓励，激励我优化主页吧</p>
-        <p id="no-comment">暂时还没有评论</p>
-        <textarea name = "text-input">在这里输入你的评论</textarea>
+        <h2 style="font-size:48px;">评论区</h2>
+        <p style="font-size:24px;">请留下你的吐槽/暴论/建议/鼓励，激励我优化主页吧</p>
+        <div id="comment-area-body"><p id="no-comment">暂时还没有评论</p></div>
+        <textarea name = "text-input" style="height: 100px; width: 800px; margin-top:40px;">在这里输入你的评论</textarea>
         <br></br>
-        <p>留下你的联系方式，交个朋友吧（带‘*’的为必填项。只会显示名字，不会公布邮箱）</p>
-        <p>*名字:<input type="text" name="name" value="" ></p>
-        <p>*邮箱:<input type="text" name="email" value="" ></p>
-        <p>头像:<input type="file" name="image"></p>
+        <p style="font-size:24px;">留下你的联系方式，交个朋友吧（带‘*’的为必填项。只会显示名字，不会公布邮箱）</p>
+        <p>*名字:  <input type="text" name="name" value="" ></p>
+        <p>*邮箱:  <input type="text" name="email" value="" ></p>
+        <p> 头像:  <input type="file" name="image"></p>
         <br/><br/>
         <!-- to be revised here: maybe change to a button -->
-        <p><input type="submit" style="margin-bottom: auto;" title="submit your comment"></p>
+        <p><input id="submit" type="submit" style="margin-bottom: 0%;" value="提交"></p>
     </form>
 </body>
 

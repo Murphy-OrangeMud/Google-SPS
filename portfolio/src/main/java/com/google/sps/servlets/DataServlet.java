@@ -84,7 +84,7 @@ public class DataServlet extends HttpServlet {
         int year = Integer.parseInt(timestamp.substring(0,4));
         int month = Integer.parseInt(timestamp.substring(5,7));
         int day = Integer.parseInt(timestamp.substring(8,10));
-        if (year <= 2020 && month <= 7 && day <= 14) continue;
+        if (year <= 2020 && month <= 7 && day <= 19) continue;
         String image_url = (String) comments.getProperty("image");
         response.getWriter().println("<article class = \"comment-body\">");
         response.getWriter().println("<footer class = \"comment-metadata\">");
@@ -95,7 +95,7 @@ public class DataServlet extends HttpServlet {
         response.getWriter().println("<b class=\"fn\">" + name + "</b>");
         response.getWriter().println("<time>" + timestamp + "</time></div></footer>");
         response.getWriter().println("<div class=\"comment-content\"><p>");
-        response.getWriter().println(comments.getProperty("content") + "</p></div>");
+        response.getWriter().println(comments.getProperty("content") + "</p></div></article>");
                
     }
   }
