@@ -31,6 +31,7 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +40,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
+
+import java.net.URLDecoder;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -74,7 +77,7 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
-    response.setContentType("text/html; charset=UTF-8");
+    response.setContentType("text/html; charset=utf-8");
 
     for (Entity comments: results.asIterable()) {
         String timestamp = (String) comments.getProperty("timestamp");
@@ -101,7 +104,8 @@ public class DataServlet extends HttpServlet {
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
       //String comment = Jsoup.clean(request.getParameter("text-input"), Whitelist.none(), Document.outputSettings().charset("UTF-8"));
       String pattern = "<.*>.*</.*>";
-      String comment = request.getParameter("text-input");
+      String comment = getParameter(request, "text-input", "");
+
       boolean badguy = Pattern.matches(pattern, comment);
 
       if (badguy) {
@@ -142,8 +146,11 @@ public class DataServlet extends HttpServlet {
       response.sendRedirect("/thanks");
   }
 
-  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
-    String value = request.getParameter(name);
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) throws UnsupportedEncodingException {
+    request.setCharacterEncoding("utf-8");
+    //String value = URLDecoder.decode(request.getParameter(name), "utf-8");
+    //
+    String value = new String(request.getParameter(name).getBytes("iso8859-1"),"utf-8");
     if (value == null) {
       return defaultValue;
     }
