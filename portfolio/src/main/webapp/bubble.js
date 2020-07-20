@@ -3,12 +3,12 @@ var xPos = [50, document.getElementById("bg").clientWidth - 20, document.getElem
 var yPos = [document.getElementById("bg").clientHeight - 20, 50, document.getElementById("bg").clientHeight / 2];
 var step = 1;
 var delay = [8, 10, 12];
-var height_min = [0,0,0];
-var width_min = [0,0,0];
-//var height_min = [document.getElementById("bg").clientHeight - 200, 0, document.getElementById("bg").clientHeight / 2 - 100];
-//var width_min = [0, document.getElementById("bg").clientWidth - 200, document.getElementById("bg").clientWidth - 200];
-var height = [document.getElementById("bg").clientHeight, 200, document.getElementById("bg").clientHeight / 2 + 100];
-var width = [200, document.getElementById("bg").clientWidth, document.getElementById("bg").clientWidth];
+//var height_min = [0,0,0];
+//var width_min = [0,0,0];
+var height_min = [document.getElementById("bg").clientHeight - 400, 0, document.getElementById("bg").clientHeight - 300];
+var width_min = [0, document.getElementById("bg").clientWidth - 400, document.getElementById("bg").clientWidth - 400];
+var height = [document.getElementById("bg").clientHeight, document.getElementById("bg").clientHeight - 300, document.getElementById("bg").clientHeight];
+var width = [400, document.getElementById("bg").clientWidth, document.getElementById("bg").clientWidth];
 var Hoffset = [0, 0, 0];
 var Woffset = [0, 0, 0];
 var yon = [0, 0, 0];
@@ -21,18 +21,18 @@ for (var i = 0; i < 3; i++) {
 }
 //function draw(button_id, button) {}
 function changePos(button_id) {
-    width[button_id] = document.getElementById("bg").clientWidth;
-    height[button_id] = document.getElementById("bg").clientHeight;
+    //width[button_id] = document.getElementById("bg").clientWidth;
+    //height[button_id] = document.getElementById("bg").clientHeight;
     Hoffset[button_id] = document.getElementById(id[button_id]).offsetHeight;
     Woffset[button_id] = document.getElementById(id[button_id]).offsetWidth;
-    document.getElementById(id[button_id]).style.left = (xPos[button_id] + document.getElementById("bg").scrollLeft) + "px";
-    document.getElementById(id[button_id]).style.top = (yPos[button_id] + document.getElementById("bg").scrollTop) + "px";
+    document.getElementById(id[button_id]).style.left = xPos[button_id] + "px"; //(xPos[button_id] + document.getElementById("bg").scrollLeft) + "px";
+    document.getElementById(id[button_id]).style.top = yPos[button_id] + "px"; //(yPos[button_id] + document.getElementById("bg").scrollTop) + "px";
     if (yon[button_id]) yPos[button_id] += step;
     else yPos[button_id] -= step;
     if (xon[button_id]) xPos[button_id] += step;
     else xPos[button_id] -= step;
-    //yon[button_id] = Math.random() % 10 >= 2? 1: 0;
-    //xon[button_id] = Math.random() % 10 >= 2? 1: 0;
+    //yon[button_id] = Math.random() * 10 >= 2? 1: 0;
+    //xon[button_id] = Math.random() * 10 >= 2? 1: 0;
     if (yPos[button_id] < height_min[button_id]) {
         yon[button_id] = 1;
         yPos[button_id] = height_min[button_id];

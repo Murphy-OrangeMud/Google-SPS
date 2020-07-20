@@ -31,6 +31,7 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,11 +39,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
+
+import java.net.URLDecoder;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.google.gson.Gson;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.safety.Cleaner;
+import org.jsoup.safety.Whitelist;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
@@ -68,44 +77,49 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
 
-    response.setContentType("text/html; charset=UTF-8");
-
-    if (commented) {
-        response.getWriter().println("<script>alert(\"感谢你的支持！\");</script>");
-        commented = false;
-    }
+    response.setContentType("text/html; charset=utf-8");
 
     for (Entity comments: results.asIterable()) {
         String timestamp = (String) comments.getProperty("timestamp");
         int year = Integer.parseInt(timestamp.substring(0,4));
         int month = Integer.parseInt(timestamp.substring(5,7));
         int day = Integer.parseInt(timestamp.substring(8,10));
-        if (year <= 2020 && month <= 7 && day <= 10) continue;
-        response.getWriter().println(timestamp + "<br></br>");
-        String tmp_email = (String) comments.getProperty("email");
-        int nickname = tmp_email.indexOf('@');
-        if (nickname != -1) { 
-            tmp_email = tmp_email.substring(0, nickname); 
-        }
-        response.getWriter().println(tmp_email + "<br></br>");
-        response.getWriter().println(comments.getProperty("content") + "<br></br>");
+        if (year <= 2020 && month <= 7 && day <= 19) continue;
         String image_url = (String) comments.getProperty("image");
-        if (image_url != null) {
-            response.getWriter().println("<img style=\"height=50px;\" src=\"" + image_url + "\" /><br></br>");
-        }       
+        response.getWriter().println("<article class = \"comment-body\">");
+        response.getWriter().println("<footer class = \"comment-metadata\">");
+        response.getWriter().println("<div class = \"comment-author\">");
+        response.getWriter().println("<img width=\"80\" height=\"80\" src=\"" + image_url + "\" />");
+        String name = (String) comments.getProperty("name");
+        String email = (String) comments.getProperty("email");
+        response.getWriter().println("<b class=\"fn\">" + name + "</b>");
+        response.getWriter().println("<time>" + timestamp + "</time></div></footer>");
+        response.getWriter().println("<div class=\"comment-content\"><p>");
+        response.getWriter().println(comments.getProperty("content") + "</p></div></article>");
+               
     }
   }
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-      String comment = Jsoup.clean(request.getParameter("text-input"), Whitelist.none());
-      String email;
-      boolean Friend = Boolean.parseBoolean(getParameter(request, "friend", "false"));
+      //String comment = Jsoup.clean(request.getParameter("text-input"), Whitelist.none(), Document.outputSettings().charset("UTF-8"));
+      String pattern = "<.*>.*</.*>";
+      String comment = getParameter(request, "text-input", "");
 
-      if (Friend) {
-          email = getParameter(request, "email-input", "anonymous");
-      } 
-      else email = "anonymous";
+      boolean badguy = Pattern.matches(pattern, comment);
+
+      if (badguy) {
+          response.sendRedirect("/badguy");
+          return;
+      }
+
+      String name = getParameter(request, "name", "");
+      String email = getParameter(request, "email", "");
+      
+      if (comment.equals("") || name.equals("") || email.equals("")) {
+          response.sendRedirect("/anonymous");
+          return;
+      }
 
       SimpleDateFormat sdf = new SimpleDateFormat();
       sdf.applyPattern("yyyy-MM-dd HH:mm:ss a");
@@ -113,8 +127,13 @@ public class DataServlet extends HttpServlet {
       String timestamp = sdf.format(date);
 
       String imageUrl = getUploadedImageUrl(request, "image");
+      
+      if (imageUrl == null) {
+          imageUrl = "/image/anonymous.jpg";
+      }
 
       Entity commentEntity = new Entity("Comment");
+      commentEntity.setProperty("name", name);
       commentEntity.setProperty("email", email);
       commentEntity.setProperty("content", comment);
       commentEntity.setProperty("timestamp", timestamp);
@@ -124,11 +143,14 @@ public class DataServlet extends HttpServlet {
       datastore.put(commentEntity);
 
       commented = true;
-      response.sendRedirect("/index.html");
+      response.sendRedirect("/thanks");
   }
 
-  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
-    String value = request.getParameter(name);
+  private String getParameter(HttpServletRequest request, String name, String defaultValue) throws UnsupportedEncodingException {
+    request.setCharacterEncoding("utf-8");
+    //String value = URLDecoder.decode(request.getParameter(name), "utf-8");
+    //
+    String value = new String(request.getParameter(name).getBytes("iso8859-1"),"utf-8");
     if (value == null) {
       return defaultValue;
     }
